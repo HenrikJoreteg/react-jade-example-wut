@@ -20,8 +20,13 @@ var MyComponent2 = React.createClass({
     },
 
     componentWillMount: function () {
-        setInterval(function () {
+        var count = 0
+        var inter = setInterval(function () {
+            console.time('react');
             this.setState({ time: Date.now() });
+            console.timeEnd('react');
+
+            if (count++ > 100) clearInterval(inter);
         }.bind(this), 100);
     },
 
